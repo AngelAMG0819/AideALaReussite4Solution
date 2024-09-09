@@ -13,20 +13,37 @@ import java.util.Scanner;
 public class Main {
 
     public static int Quiz() {
+        int resultat = 0;
         try {
             File fichier = new File("src/main/resources/input.txt");
             Scanner lecteur = new Scanner(fichier);
 
             while (lecteur.hasNextLine()) {
                 String ligne = lecteur.nextLine();
-                System.out.println(ligne);
+                String chiffres = "";
+
+                for (char c : ligne.toCharArray())  {
+                    if (Character.isDigit(c)) {
+                        chiffres = chiffres + c;
+
+                    }
+
+                }
+
+                String finalChiffre = String.valueOf(chiffres.charAt(0)) + chiffres.charAt(chiffres.length() - 1);
+                chiffres.charAt(chiffres.length() - 1);
+
+                resultat = resultat + Integer.parseInt(finalChiffre);
+
+                System.out.println(finalChiffre);
+
             }
 
             lecteur.close();
         } catch (FileNotFoundException e) {
             System.out.println("Le fichier n'a pas été trouvé.");
         }
-        return 0;
+        return resultat;
     }
 
     public static void main(String[] args) {
